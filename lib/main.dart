@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+import 'package:growth_tree/controller/node_controller.dart';
+import 'package:growth_tree/screens/home.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
@@ -10,6 +14,9 @@ Future<void> main() async {
     url: '${dotenv.env['SUPABASE_DB_URL']}',
     anonKey: '${dotenv.env['SUPABASE_PUBLIC_ANON_KEY']}',
   );
+
+  NodeController nc = Get.put(NodeController());
+  nc.fetchData();
 
   runApp(const MyApp());
 }
@@ -25,26 +32,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(title: 'Growth Tree'),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(title),
-      ),
-      body: const Center(
-        child: Text('data'),
-      ),
+      home: const HomeScreen(title: 'Growth Tree'),
     );
   }
 }
