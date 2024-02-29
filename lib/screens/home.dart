@@ -35,11 +35,15 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     const SizedBox(height: 16),
                     Column(
-                        children: nc.data
-                            .map((element) =>
-                                GrowthNodes(nodeTitle: element['nodeTitle']))
-                            .toList()),
-                    const BottomNodeSheet(parentId: 1)
+                      children: nc.data
+                          .map((element) => GrowthNodes(
+                                nodeTitle: element['nodeTitle'],
+                                nodeId: element['id'],
+                                parentId: element['parentNode'],
+                                hasChild: element['hasChild'],
+                              ))
+                          .toList(),
+                    ),
                   ],
                 ),
         ),

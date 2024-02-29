@@ -80,9 +80,9 @@ class _BottomNodeSheetState extends State<BottomNodeSheet> {
                         ElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              nc.insertData(
+                              nc.insertNode(
                                   nodeTitle: textController.text,
-                                  parentNode: widget.parentId);
+                                  parentId: widget.parentId);
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text('Adding Node'),
