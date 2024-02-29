@@ -27,21 +27,23 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     BottomNodeSheet(parentId: 0),
-                    SizedBox(height: 16),
+                    SizedBox(height: 8),
                     Text('Add a growth node')
                   ],
                 )
               : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 16),
                     Column(
                       children: nc.data
-                          .map((element) => GrowthNodes(
-                                nodeTitle: element['nodeTitle'],
-                                nodeId: element['id'],
-                                parentId: element['parentNode'],
-                                hasChild: element['hasChild'],
-                              ))
+                          .map(
+                            (element) => GrowthNodes(
+                              nodeTitle: element['nodeTitle'],
+                              nodeId: element['id'],
+                              parentId: element['parentNode'],
+                              isRoot: element['parentNode'] != 0 ? true : false,
+                            ),
+                          )
                           .toList(),
                     ),
                   ],

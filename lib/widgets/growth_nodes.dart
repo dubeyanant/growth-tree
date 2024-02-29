@@ -10,13 +10,13 @@ class GrowthNodes extends StatelessWidget {
     required this.nodeTitle,
     required this.nodeId,
     required this.parentId,
-    required this.hasChild,
+    required this.isRoot,
   });
 
   final String nodeTitle;
   final int nodeId;
   final int parentId;
-  final bool hasChild;
+  final bool isRoot;
 
   final _formKey = GlobalKey<FormState>();
   final textController = TextEditingController();
@@ -122,6 +122,19 @@ class GrowthNodes extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        isRoot
+            ? Container(
+                height: 32,
+                width: 2,
+                decoration: const BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(4),
+                  ),
+                ),
+              )
+            : const SizedBox.shrink(),
+        const SizedBox(height: 8),
         GestureDetector(
           onTapDown: (details) =>
               _showPopupMenu(context, details.globalPosition, nodeId),
@@ -138,19 +151,6 @@ class GrowthNodes extends StatelessWidget {
         const SizedBox(height: 4),
         Text(nodeTitle),
         const SizedBox(height: 8),
-        hasChild
-            ? Container(
-                height: 32,
-                width: 2,
-                decoration: const BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(4),
-                  ),
-                ),
-              )
-            : const SizedBox.shrink(),
-        const SizedBox(height: 16),
       ],
     );
   }
