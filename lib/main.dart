@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import 'package:growth_tree/screens/test.dart';
 import 'package:growth_tree/controller/node_controller.dart';
 import 'package:growth_tree/screens/home.dart';
 
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const HomeScreen(title: 'Growth Tree'),
+      // home: const MyWidget(),
     );
   }
 }
